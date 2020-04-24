@@ -1,6 +1,7 @@
 package main.controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -12,8 +13,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import main.model.News_Feed_TechCrunch;
 
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class ArticleBoxController  {
+
+public class ArticleBoxController {
 
     @FXML
     public HBox hBox;
@@ -40,7 +44,34 @@ public class ArticleBoxController  {
     public Button readMore;
 
 
+    String titleStr;
+    String authorNameStr;
+    String dateStr;
+    String contentStr;
+    String urlToImage;
 
+
+    public ArticleBoxController(String titleStr, String authorNamestr, String dateStr, String contentStr, String urlToImage) {
+        this.titleStr = titleStr;
+        this.authorNameStr = authorNamestr;
+        this.dateStr = dateStr;
+        this.contentStr = contentStr;
+        this.urlToImage = urlToImage;
+    }
+
+
+    public void init() {
+        this.title.setText(this.titleStr);
+          this.authorName.setText(this.authorNameStr);
+        this.content.setText(this.contentStr);
+        this.date.setText(this.dateStr);
+        Image image = new Image(this.urlToImage);
+        this.imageView.setImage(image);
+    }
+
+
+
+    /*
 
     public void passInfo(Label title, Label authorName, Label date, Text content, ImageView imageView, Button readMore){
         this.title = title;
@@ -51,25 +82,10 @@ public class ArticleBoxController  {
         this.readMore = readMore;
     }
 
-
-    public void init(int i) {
-        News_Feed_TechCrunch news_feed_techCrunch = new News_Feed_TechCrunch();
-        this.title.setText(news_feed_techCrunch.getTitle(i));
-        this.authorName.setText(news_feed_techCrunch.getAuthor(i));
-        this.date.setText(news_feed_techCrunch.getDate(i));
-        this.content.setText(news_feed_techCrunch.getContent(i));
-        Image image = new Image(news_feed_techCrunch.getUrlToImage(i));
-        this.imageView.setImage(image);
-        this.readMore = new Button("read Me");
-        anchorPane.getChildren().addAll(this.title, this.authorName, this.date, this.content, this.imageView, this.readMore);
-        this.hBox.getChildren().add(anchorPane);
-
-    }
+     */
 
     public HBox getHbox(){
         return this.hBox;
     }
-
-
 
 }
