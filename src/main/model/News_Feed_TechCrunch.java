@@ -76,10 +76,10 @@ public class News_Feed_TechCrunch extends Connection implements News  {
         JSONObject jsonObject = new JSONObject(responseContent.toString());
         JSONArray jsonArray = jsonObject.getJSONArray("articles");
         JSONObject authorObj =jsonArray.getJSONObject(index);
-        String urlToImage = authorObj.getString("urlToImage");
+        //String urlToImage = authorObj.getString("urlToImage");
+        String urlToImage = "";
         return urlToImage;
     }
-
     @Override
     public String getUrl(int index) {
         JSONObject jsonObject = new JSONObject(responseContent.toString());

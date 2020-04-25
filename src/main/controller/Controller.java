@@ -2,13 +2,11 @@ package main.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.text.Text;
 import main.model.News_Feed_TechCrunch;
+import main.view.FxmlLoader;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -24,6 +22,8 @@ public class Controller implements Initializable {
     public ScrollPane scrollPane;
 
 
+    @FXML
+    private ArticleBoxController articleBoxController;
 
 
 
@@ -39,9 +39,8 @@ public class Controller implements Initializable {
             String date = news_feed_techCrunch.getDate(i);
             String content = news_feed_techCrunch.getContent(i);
             String url =news_feed_techCrunch.getUrlToImage(i);
-            ArticleBoxController articleBoxController = new ArticleBoxController(title,authorName,date,content,url);
-            articleBoxController.init();
-            this.vBox.getChildren().add(articleBoxController.title);
+            this.articleBoxController = new ArticleBoxController(title,authorName,date,content,url);
+            this.vBox.getChildren().add(articleBoxController.init());
         }
         this.scrollPane.setContent(vBox);
         this.scrollPane.setFitToHeight(true);
