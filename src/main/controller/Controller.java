@@ -5,7 +5,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 import main.model.News_Feed_TechCrunch;
-import main.view.FxmlLoader;
+
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -38,9 +38,10 @@ public class Controller implements Initializable {
             String authorName = news_feed_techCrunch.getAuthor(i);
             String date = news_feed_techCrunch.getDate(i);
             String content = news_feed_techCrunch.getContent(i);
-            String url =news_feed_techCrunch.getUrlToImage(i);
-            this.articleBoxController = new ArticleBoxController(title,authorName,date,content,url);
-            this.vBox.getChildren().add(articleBoxController.init());
+            String urlToImage =news_feed_techCrunch.getUrlToImage(i);
+            String url = news_feed_techCrunch.getUrl(i);
+            this.articleBoxController = new ArticleBoxController(title,authorName,date,content,urlToImage,url);
+            this.vBox.getChildren().add(articleBoxController.gethBox());
         }
         this.scrollPane.setContent(vBox);
         this.scrollPane.setFitToHeight(true);
