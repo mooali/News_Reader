@@ -8,9 +8,12 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+
+
+
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("view/gui2.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/main/view/mainMenu.fxml"));
         primaryStage.setTitle("News Reeader");
         primaryStage.setScene(new Scene(root, 1000, 750));
         primaryStage.setResizable(true);
