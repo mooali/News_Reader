@@ -2,6 +2,7 @@ package main.model;
 
 public interface News {
 
+    public int getArticleNumber();
     public String getAuthor(int index);
     public String getTitle(int index);
     public String getDescription(int index);

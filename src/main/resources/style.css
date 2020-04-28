@@ -3,9 +3,26 @@
     -fx-border-width: 0.5em;
     -fx-border-radius: 0.5em;
     -fx-border-insets: 0.5em;
+    -fx-background-radius: 0.5em;
+    -fx-background-insets: 1em;
     -fx-background-color: rgb(40, 40, 40);
+}
+
+.scroll-pane .scroll-bar:vertical{
+    -fx-background-color:  rgb(100, 100, 100);
 
 }
+
+.scroll-pane .scroll-bar:horizontal {
+    -fx-background-color:  rgb(100, 100, 100);
+
+}
+
+.scroll-pane .scroll-bar, .scroll-bar:pressed, .scroll-bar:focused {
+    -fx-font-size: 15;
+}
+
+
 
 #title{
     -fx-font-size: 1.8em;
@@ -19,21 +36,70 @@
     -fx-fill: white;
     -fx-font-size: 1.2em;
     -fx-font-family: "Source Sans Pro";
+    -fx-cursor: text;
+
 }
 
 .label{
     -fx-text-fill: rgb(220,220,220);
+    -fx-cursor: text;
 
+}
+
+
+#readMoreButton{
+    -fx-font: 16px "Serif";
+    -fx-text-alignment: center;
+    -fx-padding: 0.8;
+    -fx-border-width: 0.01em;
+    -fx-border-color: black;
+    -fx-border-radius: 0.5em;
+    -fx-background-color: rgb(200,100,100);
+}
+
+#readMoreButton:hover{
+    -fx-background-color: white;
+    -fx-padding: 1.2;
+    -fx-cursor: hand;
 }
 
 .button{
     -fx-font: 16px "Serif";
-    -fx-padding: 1;
+    -fx-font-size: 2.5em;
+    -fx-padding: 1em;
+    -fx-border-width: 0.3em;
+    -fx-border-color: black;
+    -fx-background-radius: 1em;
+    -fx-border-radius: 0.5em;
     -fx-background-color: rgb(200,100,100);
 }
 
-.button:hover{
+
+.button:hover {
+    -fx-border-color: white;
+    -fx-font-size: 2.7em;
+}
+
+.button:pressed{
+    -fx-cursor: wait;
+}
+
+#mainButtons:pressed{
+    -fx-cursor: wait;
+}
+
+#mainButtons{
+    -fx-font: 1.5em "Serif";
+    -fx-padding: 0.8;
+    -fx-border-width: 0.01em;
+    -fx-border-color: black;
+    -fx-border-radius: 0.5em;
+    -fx-background-radius: 0.5em;
+    -fx-background-color: rgb(200,100,100);
+}
+
+#mainButtons:hover{
     -fx-background-color: white;
+    -fx-font-size: 1.7em;
     -fx-padding: 1.2;
-    -fx-cursor: hand;
 }

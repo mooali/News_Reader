@@ -7,12 +7,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.MainMenuController">
    <center>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="showMain" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#changeToMain" style="-fx-background-color: rgb(200,100,100);" text="start" textFill="#c8c8c8" textOverrun="CLIP">
+            <Button fx:id="showMain" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#changeToMain" style="-fx-background-color: rgb(200,100,100);" stylesheets="@../style.css" text="%mainMenu.start" textFill="#c8c8c8" textOverrun="CLIP">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
@@ -23,7 +22,7 @@
                   <Font name="Arial" size="14.0" />
                </font>
             </Button>
-            <Button alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: rgb(200,100,100);" text="English" textFill="#c7c7c7">
+            <Button fx:id="languageButton" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#setButtons" style="-fx-background-color: rgb(200,100,100);" stylesheets="@../style.css" text="%mainMenu.language" textFill="#c7c7c7">
                <VBox.margin>
                   <Insets />
                </VBox.margin>

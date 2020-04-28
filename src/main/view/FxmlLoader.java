@@ -1,3 +1,4 @@
+/*
 package main.view;
 
 import javafx.fxml.FXMLLoader;
@@ -43,3 +44,4 @@ public class FxmlLoader  {
         return borderPane;
     }
 }
+*/

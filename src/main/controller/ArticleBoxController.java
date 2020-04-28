@@ -1,17 +1,15 @@
 package main.controller;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import main.view.ViewChanger;
 
 import java.awt.*;
 import java.io.IOException;
@@ -46,8 +44,6 @@ public class ArticleBoxController{
     public Button readMore;
 
 
-    @FXML
-    ArticleBoxController articleBoxController;
 
     String titleStr;
     String authorNameStr;
@@ -71,6 +67,7 @@ public class ArticleBoxController{
         this.hBox = new HBox();
         this.hBox.setId("hBox");
         this.hBox.getStylesheets().add("main/resources/style.css");
+        this.hBox.setMinHeight(325);
         this.authorName = new Label();
         this.date = new Label();
         this.title = new Label();
@@ -81,29 +78,34 @@ public class ArticleBoxController{
         this.content.setId("content");
         this.imageView = new ImageView();
         this.readMore = new Button("Read More");
+        this.readMore.setText(ViewChanger.getLanguage().getString("main.readMore"));
+
+        this.readMore.setId("readMoreButton");
         this.title.setText(this.titleStr);
         this.authorName.setText(this.authorNameStr);
         this.content.setText(this.contentStr);
         this.date.setText(this.dateStr);
         this.imageView.setFitWidth(200);
         this.imageView.setFitHeight(200);
-        this.imageView.setLayoutX(750);
-        this.imageView.setLayoutY(22);
+        this.imageView.setLayoutX(800);
+        this.imageView.setLayoutY(75);
         this.content.setWrappingWidth(700);
         this.anchorPane.prefHeight(200);
         this.anchorPane.prefWidth(300);
         this.authorName.setLayoutX(40);
         this.authorName.setLayoutY(60);
         this.content.setLayoutX(40);
-        this.content.setLayoutY(95);
+        this.content.setLayoutY(120);
         this.title.setLayoutX(40);
         this.title.setLayoutY(10);
-        this.date.setLayoutX(120);
-        this.date.setLayoutY(190);
-        this.readMore.setLayoutX(40);
-        this.readMore.setLayoutY(186);
-       // Image image = new Image(this.urlToImage);
-        //this.imageView.setImage(image);
+        this.title.setWrapText(true);
+        this.date.setLayoutX(130);
+        this.date.setLayoutY(225);
+        this.readMore.setLayoutX(35);
+        this.readMore.setLayoutY(225);
+        Image image = new Image(this.urlToImage);
+        this.imageView.setImage(image);
+        this.imageView.setStyle("-fx-padding: 6em");
         this.readMore.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -122,18 +124,6 @@ public class ArticleBoxController{
         return this.hBox;
     }
 
-
-
-    /*
-    public void passInfo(Label title, Label authorName, Label date, Text content, ImageView imageView, Button readMore){
-        this.title = title;
-        this.authorName = authorName;
-        this.date = date;
-        this.content = content;
-        this.imageView = imageView;
-        this.readMore = readMore;
-    }
-     */
 
 
 }

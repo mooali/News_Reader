@@ -11,7 +11,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import main.model.Connection;
+import main.model.News_Feed;
+import main.model.News_Feed_Swiss;
 import main.model.News_Feed_TechCrunch;
+import main.view.ViewChanger;
 
 
 import java.io.IOException;
@@ -30,49 +34,94 @@ public class MainController implements Initializable {
     public ScrollPane scrollPane;
 
     @FXML
-    private Button mainMenuButton;
+    Button mainMenuButton;
+
+
+    @FXML Button swissButton;
+
+    @FXML
+    Button techChrunchButton;
+
+
+    @FXML
+    Button statisticButton;
 
 
     @FXML
     private ArticleBoxController articleBoxController;
 
 
+    News_Feed news_feed = new News_Feed();
+    News_Feed_Swiss news_feed_swiss = new News_Feed_Swiss();
+
+    String swissApiNews = "http://newsapi.org/v2/top-headlines?country=ch&apiKey=1c488ff068774a759c2b59ba4f93e146";
+    String techChrunchApi ="http://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=1c488ff068774a759c2b59ba4f93e146";
 
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        News_Feed_TechCrunch news_feed_techCrunch = new News_Feed_TechCrunch();
-        news_feed_techCrunch.connect("http://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=1c488ff068774a759c2b59ba4f93e146");
-        for(int i = 0; i<news_feed_techCrunch.getArticleNumber();i++) {
-            String title = news_feed_techCrunch.getTitle(i);
-            String authorName = news_feed_techCrunch.getAuthor(i);
-            String date = news_feed_techCrunch.getDate(i);
-            String content = news_feed_techCrunch.getContent(i);
-            String urlToImage =news_feed_techCrunch.getUrlToImage(i);
-            String url = news_feed_techCrunch.getUrl(i);
+        this.mainMenuButton.setText(ViewChanger.getLanguage().getString("main.mainMenu"));
+        this.swissButton.setText(ViewChanger.getLanguage().getString("main.swiss"));
+        this.statisticButton.setText(ViewChanger.getLanguage().getString("main.statistic"));
+        this.scrollPane.setContent(initTechCrunch());
+
+    }
+
+
+
+    public VBox initTechCrunch(){
+        this.news_feed = new News_Feed();
+        news_feed.connect(techChrunchApi);
+        for(int i = 0; i<news_feed.getArticleNumber();i++) {
+            String title = news_feed.getTitle(i);
+            String authorName = news_feed.getAuthor(i);
+            String date = news_feed.getDate(i);
+            String content = news_feed.getContent(i);
+            String urlToImage =news_feed.getUrlToImage(i);
+            String url = news_feed.getUrl(i);
             this.articleBoxController = new ArticleBoxController(title,authorName,date,content,urlToImage,url);
             this.vBox.getChildren().add(articleBoxController.gethBox());
         }
-        this.scrollPane.setContent(vBox);
-        this.scrollPane.setFitToHeight(true);
-        this.scrollPane.setFitToWidth(true);
+        return this.vBox;
+    }
+
+
+    public VBox initSwiss(){
+        this.news_feed_swiss = new News_Feed_Swiss();
+        news_feed_swiss.connect(swissApiNews);
+        for(int i = 0; i<news_feed_swiss.getArticleNumber();i++) {
+            String title = news_feed_swiss.getTitle(i);
+            String authorName = news_feed_swiss.getAuthor(i);
+            String date = news_feed_swiss.getDate(i);
+            String content = news_feed_swiss.getContent(i);
+            String urlToImage =news_feed_swiss.getUrlToImage(i);
+            String url = news_feed_swiss.getUrl(i);
+            this.articleBoxController = new ArticleBoxController(title,authorName,date,content,urlToImage,url);
+            this.vBox.getChildren().add(articleBoxController.gethBox());
+        }
+        return this.vBox;
+    }
+
+
+
+
+    @FXML
+    public void showSwissNews() {
+        this.scrollPane.setContent(initSwiss());
+
     }
 
 
     @FXML
     public void changeToMainMenu(ActionEvent event) throws IOException {
-
-        Parent parent = FXMLLoader.load(getClass().getClassLoader().getResource("main/view/mainMenu.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getClassLoader().getResource("main/resources/view/mainMenu.fxml"),MainMenuController.languageChanger.getBundle());
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(new Scene(parent, 1000, 750));
         window.show();
-
-
-
-
-
     }
 
 
 }
+
+

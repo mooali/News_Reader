@@ -1,11 +1,12 @@
 package main.model;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class News_Feed_TechCrunch extends Connection implements News  {
+public class News_Feed extends Connection implements News  {
     private static StringBuffer responseContent = getResponseContent();
 
 
@@ -15,6 +16,11 @@ public class News_Feed_TechCrunch extends Connection implements News  {
     @Override
     public void connect(String inputURL) {
         super.connect(inputURL);
+    }
+
+    @Override
+    public void disconnect(String inputURL) {
+        super.disconnect(inputURL);
     }
 
 
@@ -43,16 +49,25 @@ public class News_Feed_TechCrunch extends Connection implements News  {
         JSONObject jsonObject = new JSONObject(responseContent.toString());
         JSONArray jsonArray = jsonObject.getJSONArray("articles");
         JSONObject authorObj =jsonArray.getJSONObject(index);
-        String title = authorObj.getString("title");
-        return title;
+        try {
+            String title = authorObj.getString("title");
+            return title;
+        }catch (JSONException e){
+            return " ";
+        }
     }
 
     public String getDescription(int index) {
         JSONObject jsonObject = new JSONObject(responseContent.toString());
         JSONArray jsonArray = jsonObject.getJSONArray("articles");
         JSONObject authorObj =jsonArray.getJSONObject(index);
-        String description = authorObj.getString("description");
-        return description;
+        try {
+            String description = authorObj.getString("description");
+            return description;
+        }catch (JSONException e){
+            return " ";
+        }
+
     }
 
     public String getContent(int index) {
@@ -71,10 +86,15 @@ public class News_Feed_TechCrunch extends Connection implements News  {
         JSONObject jsonObject = new JSONObject(responseContent.toString());
         JSONArray jsonArray = jsonObject.getJSONArray("articles");
         JSONObject authorObj =jsonArray.getJSONObject(index);
-        String publishedAt = authorObj.getString("publishedAt");
-        LocalDateTime datetime = LocalDateTime.parse(publishedAt, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'"));
-        String dateTime = datetime.format(DateTimeFormatter.ofPattern("dd-MM-yyyy' T'HH:MM"));
-        return dateTime;
+        try {
+            String publishedAt = authorObj.getString("publishedAt");
+            LocalDateTime datetime = LocalDateTime.parse(publishedAt, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'"));
+            String dateTime = datetime.format(DateTimeFormatter.ofPattern("dd-MM-yyyy' T'HH:MM"));
+            return dateTime;
+        }catch (JSONException e){
+            return " ";
+        }
+
     }
 
 
@@ -94,8 +114,13 @@ public class News_Feed_TechCrunch extends Connection implements News  {
         JSONObject jsonObject = new JSONObject(responseContent.toString());
         JSONArray jsonArray = jsonObject.getJSONArray("articles");
         JSONObject authorObj =jsonArray.getJSONObject(index);
-        String url = authorObj.getString("url");
-        return url;    }
+        try {
+            String url = authorObj.getString("url");
+            return url;
+        }catch (JSONException e){
+            return "http://404.com/";
+        }
+     }
 
 
     public static void main(String[] args) {

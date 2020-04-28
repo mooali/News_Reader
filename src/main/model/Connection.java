@@ -21,7 +21,7 @@ public class Connection {
         return responseContent;
     }
 
-    public void connect(String inputURL){
+    public  void connect(String inputURL){
         try {
             URL url = new URL(inputURL);
             connection = (HttpURLConnection) url.openConnection();
@@ -53,6 +53,11 @@ public class Connection {
     }
 
 
+    public void disconnect(String url){
+        connection.disconnect();
+    }
+
+
     public static String parse(String responseBody){
         JSONObject jsonObject = new JSONObject(responseBody);
         JSONArray albums = jsonObject.getJSONArray("articles");
@@ -65,15 +70,5 @@ public class Connection {
         }
         return null;
     }
-
-    public static void main(String[] args) {
-        //Methode 1: java.net.HttpURLConenction
-        Connection connection = new Connection();
-        connection.connect("http://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=1c488ff068774a759c2b59ba4f93e146");
-        parse(responseContent.toString());
-
-    }
-
-
 
 }
