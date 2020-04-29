@@ -9,8 +9,21 @@ import java.time.format.DateTimeFormatter;
 
 public class News_Feed_Swiss extends Connection implements News {
 
-    private static StringBuffer responseContent = getResponseContent();
-    private int articleNumber;
+    String swissApiNews = "http://newsapi.org/v2/top-headlines?country=ch&apiKey=1c488ff068774a759c2b59ba4f93e146";
+    private static StringBuffer responseContent;
+    private Connection connection = new Connection();
+    public int articleNumber;
+
+    public News_Feed_Swiss(){
+        this.connection.connect(swissApiNews);
+        this.responseContent = connection.getResponseContent();
+
+    }
+
+    @Override
+    public void connect(String inputURL) {
+        super.connect(inputURL);
+    }
 
     @Override
     public int getArticleNumber() {
@@ -114,5 +127,10 @@ public class News_Feed_Swiss extends Connection implements News {
         }catch (JSONException e){
             return "http://404.com/";
         }
+    }
+
+    public void reset(){
+        this.responseContent = responseContent.delete(0, responseContent.length());
+        this.connection.disconnect();
     }
 }

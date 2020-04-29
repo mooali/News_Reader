@@ -49,9 +49,11 @@ public class MainController implements Initializable {
 
     @FXML
     private ArticleBoxController articleBoxController;
+    private Connection connection;
 
 
-    News_Feed news_feed = new News_Feed();
+
+    News_Feed_TechCrunch news_feed_techCrunch = new News_Feed_TechCrunch();
     News_Feed_Swiss news_feed_swiss = new News_Feed_Swiss();
 
     String swissApiNews = "http://newsapi.org/v2/top-headlines?country=ch&apiKey=1c488ff068774a759c2b59ba4f93e146";
@@ -65,21 +67,23 @@ public class MainController implements Initializable {
         this.swissButton.setText(ViewChanger.getLanguage().getString("main.swiss"));
         this.statisticButton.setText(ViewChanger.getLanguage().getString("main.statistic"));
         this.scrollPane.setContent(initTechCrunch());
-
     }
 
 
 
+
+
+
     public VBox initTechCrunch(){
-        this.news_feed = new News_Feed();
-        news_feed.connect(techChrunchApi);
-        for(int i = 0; i<news_feed.getArticleNumber();i++) {
-            String title = news_feed.getTitle(i);
-            String authorName = news_feed.getAuthor(i);
-            String date = news_feed.getDate(i);
-            String content = news_feed.getContent(i);
-            String urlToImage =news_feed.getUrlToImage(i);
-            String url = news_feed.getUrl(i);
+        this.news_feed_swiss.reset();
+        this.news_feed_techCrunch = new News_Feed_TechCrunch();
+        for(int i = 0; i<news_feed_techCrunch.getArticleNumber();i++) {
+            String title = news_feed_techCrunch.getTitle(i);
+            String authorName = news_feed_techCrunch.getAuthor(i);
+            String date = news_feed_techCrunch.getDate(i);
+            String content = news_feed_techCrunch.getContent(i);
+            String urlToImage =news_feed_techCrunch.getUrlToImage(i);
+            String url = news_feed_techCrunch.getUrl(i);
             this.articleBoxController = new ArticleBoxController(title,authorName,date,content,urlToImage,url);
             this.vBox.getChildren().add(articleBoxController.gethBox());
         }
@@ -88,8 +92,8 @@ public class MainController implements Initializable {
 
 
     public VBox initSwiss(){
-        this.news_feed_swiss = new News_Feed_Swiss();
-        news_feed_swiss.connect(swissApiNews);
+        this.news_feed_techCrunch.reset();
+        this.news_feed_swiss= new News_Feed_Swiss();
         for(int i = 0; i<news_feed_swiss.getArticleNumber();i++) {
             String title = news_feed_swiss.getTitle(i);
             String authorName = news_feed_swiss.getAuthor(i);
@@ -105,13 +109,18 @@ public class MainController implements Initializable {
 
 
 
-
     @FXML
     public void showSwissNews() {
+        this.vBox.getChildren().clear();
         this.scrollPane.setContent(initSwiss());
-
     }
 
+
+    @FXML
+    public void showTechChrunch(){
+        this.vBox.getChildren().clear();
+        this.scrollPane.setContent(initTechCrunch());
+    }
 
     @FXML
     public void changeToMainMenu(ActionEvent event) throws IOException {

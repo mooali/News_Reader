@@ -79,7 +79,6 @@ public class ArticleBoxController{
         this.imageView = new ImageView();
         this.readMore = new Button("Read More");
         this.readMore.setText(ViewChanger.getLanguage().getString("main.readMore"));
-
         this.readMore.setId("readMoreButton");
         this.title.setText(this.titleStr);
         this.authorName.setText(this.authorNameStr);

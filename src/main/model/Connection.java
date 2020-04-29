@@ -17,8 +17,11 @@ public class Connection {
     BufferedReader reader;
     String line;
 
-    public static StringBuffer getResponseContent() {
+    public  StringBuffer getResponseContent() {
         return responseContent;
+    }
+
+    public Connection(){
     }
 
     public  void connect(String inputURL){
@@ -53,10 +56,9 @@ public class Connection {
     }
 
 
-    public void disconnect(String url){
+    public void disconnect(){
         connection.disconnect();
-    }
-
+}
 
     public static String parse(String responseBody){
         JSONObject jsonObject = new JSONObject(responseBody);

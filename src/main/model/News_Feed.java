@@ -7,8 +7,10 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class News_Feed extends Connection implements News  {
-    private static StringBuffer responseContent = getResponseContent();
 
+    static Connection connection = new Connection();
+
+    private static StringBuffer responseContent = connection.getResponseContent();
 
 
     public int articleNumber;
@@ -19,10 +21,9 @@ public class News_Feed extends Connection implements News  {
     }
 
     @Override
-    public void disconnect(String inputURL) {
-        super.disconnect(inputURL);
+    public void disconnect(){
+        super.disconnect();
     }
-
 
 
     public String getAuthor(int index) {
@@ -122,19 +123,8 @@ public class News_Feed extends Connection implements News  {
         }
      }
 
-
-    public static void main(String[] args) {
-        News_Feed_TechCrunch news_feedTechCrunch = new News_Feed_TechCrunch();
-        news_feedTechCrunch.connect("http://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=1c488ff068774a759c2b59ba4f93e146");
-        System.out.println(news_feedTechCrunch.getAuthor(0));
-        System.out.println(news_feedTechCrunch.getTitle(0));
-        System.out.println(news_feedTechCrunch.getDescription(0));
-        System.out.println(news_feedTechCrunch.getContent(0));
-        System.out.println(news_feedTechCrunch.getDate(0));
-        System.out.println(news_feedTechCrunch.getUrlToImage(0));
-
-        System.out.println(responseContent.toString());
-
-
+    public void reset(){
+        this.responseContent = responseContent.delete(0, responseContent.length());
+        this.connection.disconnect();
     }
 }
