@@ -7,10 +7,15 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.stage.Stage;
 import main.view.LanguageChanger;
 import main.view.ViewChanger;
+
+import java.awt.*;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -25,6 +30,8 @@ public class MainMenuController implements Initializable {
     @FXML
     Button aboutButton;
 
+    @FXML
+    Hyperlink copyRight;
 
     public static LanguageChanger languageChanger;
 
@@ -59,6 +66,18 @@ public class MainMenuController implements Initializable {
     @FXML
     public void showAbout(){
 
+    }
+
+    @FXML
+    public void goToGitHub(){
+        Desktop desktop = Desktop.getDesktop();
+        try {
+            desktop.browse(new URI("https://github.com/mooali"));
+        }catch (IOException e){
+            e.printStackTrace();
+        }catch (URISyntaxException e){
+            e.printStackTrace();
+        }
     }
 
 

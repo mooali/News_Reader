@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import main.view.LanguageChanger;
 
@@ -20,6 +21,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/main/resources/view/mainMenu.fxml"),languageChanger.getBundle());
         primaryStage.setTitle("News Reeader");
         primaryStage.setScene(new Scene(root, 1000, 750));
+        primaryStage.getIcons().add(new Image("main/resources/pics/appIcon.png"));
         primaryStage.setResizable(true);
         primaryStage.show();
     }
