@@ -51,8 +51,8 @@
     -fx-font: 16px "Serif";
     -fx-text-alignment: center;
     -fx-padding: 0.8;
+    -fx-effect: dropshadow(three-pass-box ,#ff7070,0,0,0,0);
     -fx-border-width: 0.01em;
-    -fx-border-color: black;
     -fx-border-radius: 0.5em;
     -fx-background-color: rgb(200,100,100);
 }
@@ -68,7 +68,6 @@
     -fx-font-size: 2.5em;
     -fx-padding: 1em;
     -fx-border-width: 0.3em;
-    -fx-border-color: black;
     -fx-background-radius: 1em;
     -fx-border-radius: 0.5em;
     -fx-background-color: rgb(200,100,100);
@@ -92,7 +91,6 @@
     -fx-font: 1.5em "Serif";
     -fx-padding: 0.8;
     -fx-border-width: 0.01em;
-    -fx-border-color: black;
     -fx-border-radius: 0.5em;
     -fx-background-radius: 0.5em;
     -fx-background-color: rgb(200,100,100);

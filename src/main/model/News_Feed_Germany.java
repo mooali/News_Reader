@@ -6,20 +6,21 @@ import org.json.JSONObject;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class News_Feed extends Connection implements News  {
+public class News_Feed_Germany extends Connection implements News  {
 
     int less1hour = 0;
     int between1and2hours = 0;
     int between2and3hours = 0;
     int less4hours = 0;
 
+    String germanApi = "http://newsapi.org/v2/top-headlines?country=de&apiKey=1c488ff068774a759c2b59ba4f93e146";
 
     private static StringBuffer responseContent;
     private Connection connection = new Connection();
     public int articleNumber;
 
-    public News_Feed(String api){
-        this.connection.connect(api);
+    public News_Feed_Germany(){
+        this.connection.connect(germanApi);
         this.responseContent = connection.getResponseContent();
 
     }
@@ -130,7 +131,7 @@ public class News_Feed extends Connection implements News  {
         }catch (JSONException e){
             return "http://404.com/";
         }
-    }
+     }
 
     public void reset(){
         this.responseContent = responseContent.delete(0, responseContent.length());

@@ -22,6 +22,9 @@ public class MainMenuController implements Initializable {
     @FXML
     Button languageButton;
 
+    @FXML
+    Button aboutButton;
+
 
     public static LanguageChanger languageChanger;
 
@@ -35,7 +38,7 @@ public class MainMenuController implements Initializable {
         languageChanger = new LanguageChanger();
         Parent parent = FXMLLoader.load(getClass().getClassLoader().getResource("main/resources/view/main.fxml"),languageChanger.getBundle());
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(new Scene(parent, 1000, 750));
+        window.setScene(new Scene(parent, 1150, 750));
         window.show();    }
 
 
@@ -49,6 +52,12 @@ public class MainMenuController implements Initializable {
     private void updateLanguageOnButtons() {
         this.showMain.setText(ViewChanger.getLanguage().getString("mainMenu.start"));
         this.languageButton.setText(ViewChanger.getLanguage().getString("mainMenu.language"));
+        this.aboutButton.setText(ViewChanger.getLanguage().getString("mainMenu.about"));
+
+    }
+
+    @FXML
+    public void showAbout(){
 
     }
 

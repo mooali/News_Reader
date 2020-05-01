@@ -7,6 +7,12 @@ import java.time.format.DateTimeFormatter;
 
 public class News_Feed_TechCrunch extends Connection implements News  {
 
+
+    int less1hour = 0;
+    int between1and2hours = 0;
+    int between2and3hours = 0;
+    int less4hours = 0;
+
     String techChrunchApi ="http://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=1c488ff068774a759c2b59ba4f93e146";
     Connection connection = new Connection();
     private StringBuffer responseContent;
@@ -111,16 +117,47 @@ public class News_Feed_TechCrunch extends Connection implements News  {
             this.connection.disconnect();
         }
 
-    public static void main(String[] args) {
-        News_Feed_TechCrunch news_feedTechCrunch = new News_Feed_TechCrunch();
-        news_feedTechCrunch.connect("http://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=1c488ff068774a759c2b59ba4f93e146");
-        System.out.println(news_feedTechCrunch.getAuthor(0));
-        System.out.println(news_feedTechCrunch.getTitle(0));
-        System.out.println(news_feedTechCrunch.getDescription(0));
-        System.out.println(news_feedTechCrunch.getContent(0));
-        System.out.println(news_feedTechCrunch.getDate(0));
-        System.out.println(news_feedTechCrunch.getUrlToImage(0));
+    @Override
+    public LocalDateTime getDateTime(int index) {
+        JSONObject jsonObject = new JSONObject(responseContent.toString());
+        JSONArray jsonArray = jsonObject.getJSONArray("articles");
+        JSONObject authorObj =jsonArray.getJSONObject(index);
+        String publishedAt = authorObj.getString("publishedAt");
+        LocalDateTime datetime = LocalDateTime.parse(publishedAt, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'"));
+        return datetime;
+    }
+
+    @Override
+    public void date(int index) {
+        LocalDateTime articleTime = getDateTime(index);
+        LocalDateTime before1hour = articleTime.minusHours(1);
+        LocalDateTime dateTime2=LocalDateTime.now();
+        if(articleTime.isAfter(dateTime2.minusHours(1))){
+            this.less1hour++;
+        }else if(articleTime.isAfter(dateTime2.minusHours(2)) && articleTime.isBefore(dateTime2.minusHours(1))) {
+            between1and2hours++;
+        }else if(articleTime.isAfter(dateTime2.minusHours(3)) && articleTime.isBefore(dateTime2.minusHours(2))){
+            this.between2and3hours++;
+        }
+        else {
+            this.less4hours++;
+        }
 
     }
 
+    public int getLess1hour() {
+        return less1hour;
+    }
+
+    public int getBetween1and2hours() {
+        return between1and2hours;
+    }
+
+    public int getBetween2and3hours() {
+        return between2and3hours;
+    }
+
+    public int getLess4hours() {
+        return less4hours;
+    }
 }

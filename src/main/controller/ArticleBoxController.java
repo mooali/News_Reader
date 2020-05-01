@@ -86,6 +86,7 @@ public class ArticleBoxController{
         this.date.setText(this.dateStr);
         this.imageView.setFitWidth(200);
         this.imageView.setFitHeight(200);
+        this.imageView.isSmooth();
         this.imageView.setLayoutX(800);
         this.imageView.setLayoutY(75);
         this.content.setWrappingWidth(700);
