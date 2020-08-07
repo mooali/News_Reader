@@ -15,7 +15,7 @@ Implement a correct exception handling.
 3. You can continue reading the entire article by clicking the «Continue reading» button.
 4. The article is displayed with its headline image.
 5. Statistics window.
-6. User friendly and attractive user-interface with calm colors.
+6.Friendly and attractive user-interface with calm colors.
 7. The “About This App” window gives you a view of this app.
 
 ## Screenshots of the Application
