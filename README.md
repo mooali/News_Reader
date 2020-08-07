@@ -1,2 +1,2 @@
 # News_Reader
-![](main.png)
+![](News_Reader/main.PNG)
