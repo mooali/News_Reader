@@ -10,13 +10,13 @@ Implement a correct exception handling.
 - NewsAPI - a JSON API for live news and blog articles (https://newsapi.org/)
 
 ## Properties
-1- Three language application.
-2- The messages can be updated by the users.
-3- You can continue reading the entire article by clicking the «Continue reading» button.
-4- The article is displayed with its headline image.
-5- Statistics window.
-6- User friendly and attractive user-interface with calm colors.
-7- The “About This App” window gives you a view of this app.
+1. Three language application.
+2. The messages can be updated by the users.
+3. You can continue reading the entire article by clicking the «Continue reading» button.
+4. The article is displayed with its headline image.
+5. Statistics window.
+6. User friendly and attractive user-interface with calm colors.
+7. The “About This App” window gives you a view of this app.
 
 ## Screenshots of the Application
 ![](mainMenu.PNG)
